@@ -277,6 +277,8 @@ p {
 .portfolio-box .portfolio-box-img {
     position: relative;
     overflow: hidden;
+    max-height: 300px;
+    object-fit: none;
 }
 
 .portfolio-box .portfolio-box-img:after {
