@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Responsive bootstrap landing template">
+    <meta name="author" content="Zoyothemes">
+
+    <link rel="shortcut icon" href="images/favicon.ico">
+
+    <title>Evaxo - Android Native Modules</title>
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,500|Roboto+Mono:400,500" rel="stylesheet">
+
+    <!-- Bootstrap core CSS -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Bootstrap core CSS -->
+    <link href="css/materialdesignicons.min.css" rel="stylesheet">
+
+    <!-- mobrise icon -->
+    <link rel="stylesheet" type="text/css" href="css/mobrise.css">
+
+    <!-- Custom styles for this template -->
+    <link href="css/menu.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
+
+</head>
+
+    <body>
+
+        <!-- Navigation Bar-->
+        <header id="topnav" class="defaultscroll">
+
+            <div class="container">
+                <!-- Logo container-->
+                <div>
+                    <a href="index.html" class="logo">
+                        Evaxo
+                        <!-- logo -->
+                    </a>
+                </div>
+                <!-- End Logo container-->
+                <div class="menu-extras">
+
+                    <div class="menu-item">
+                        <!-- Mobile menu toggle-->
+                        <a class="navbar-toggle">
+                            <div class="lines">
+                                <span></span>
+                                <span></span>
+                                <span></span>
+                            </div>
+                        </a>
+                        <!-- End mobile menu toggle-->
+                    </div>
+                </div>
+
+                <div id="navigation">
+
+                    <!-- Navigation Menu-->
+                    <ul class="navigation-menu">
+
+                        <li class="has-submenu">
+                            <a href="index.html">Home</a>
+                        </li>
+
+                        <li class="has-submenu">
+                            <a href="about.html">About</a>
+                        </li>
+  
+                        <li>
+                            <a href="contact.html">Contact</a>
+                        </li>
+                    </ul>
+                    <!-- End navigation menu-->
+                </div>
+            </div>
+        </header>
+        <!-- End Navigation Bar-->
+
+        <!-- Home -->
+        <section class="section"></section>
+        <!-- Home -->
+
+        <!-- blog -->
+        <section class="section">
+            <div class="container">
+                <div class="row">
+                    <!-- Content-->
+                    <div class="col-lg-8">
+                        <!-- Post-->
+                        <article class="post">
+                            <div class="post-preview">
+                                <a href="blog-single.html"><img src="images/blog/anm.jpg" alt="" class="img-fluid img-rounded"></a>
+                            </div>
+
+                            <div class="post-header">
+                                <h2 class="post-title font-weight-normal"><a href="blog-single.html">Make use of Native Android Calendar through ReactNative</a></h2>
+                                <ul class="post-meta">
+                                    <li><i class="mdi mdi-calendar"></i> <small>Jan 19, 2022</small></li>
+                                    <li><i class="mdi mdi-tag-text-outline"></i>
+                                        <a href="#"> <small> Dev </small> </a> , <a href="#"><small>Mobile </small></a></li>
+                                    <li><i class="mdi mdi-comment-multiple-outline"></i>
+                                        <a href="#"> <small> 3 Comments</small> </a>
+                                    </li>
+                                </ul>
+                            </div>
+
+                            <div class="post-content">
+                                <p>Today I'm gonna write about an advanced use case in cross-platform mobile development. Yeah! New Year New Me!</p>
+                            </div>
+
+                            <div class="post-content">
+                                <p>Let's say you want your RN app to use the android native calendar UI and store an event in the users Google Calendar. How ? There's no actual way in RN, as of right now! However there's hope.</p>
+                            </div>
+
+                            <blockquote class="font-italic">A native module is a set of javascript functions that are implemented natively for each platform (in our case is iOS and Android). It is used in cases where native capabilities are needed, that react native doesn't have a corresponding module yet, or when the native performance is better.</blockquote>
+
+                            <div class="post-content">
+                                <p>Let's dive in.</p>
+                            </div>
+                        
+                            <ul>
+                                <li><p>1. Create your RN app as usual. We do need the android folder so eject if you have to.</p></li>
+                                <li><p>2. Open the src folder in Android Studio or VS code - we need to edit some Java source files.</p></li>
+                                <p>Basically, we need to create a bridge(api) between the native code (java) and react (js)</p>
+                                <li><p>3. Under src/main/java directory create a file for your custom module. I named mine CalendarModule.java since it's about calendar.</p></li>
+                                <img src="images/blog/native-java.png" width="100%" />
+                                <p>What you must understand here:</p>
+                                <p>The class must extend ReactContextBaseJavaModule which allows the class to be recognized as a bridged module</p>
+                                <p>Annotation @ReactMethod will be followed by one of Native Android API's. In this case createCalendarEvent(...). This method will need a Name for the event, a location and optionally a Callback. This is the code that shows the calendar UI and stores the event in users Google Calendar.</p>
+                                <p>Implementing the getName() method is mandatory - that's the name we will use to make the call from RN</p>
+                                <p>Last thing - open AppPackage and list the new created module like below: </p>
+                                <img src="images/blog/native-apppackacge.png" width="100%" />
+                                <p>We're done on the Java side. Back to RN now.</p>
+                                <p>To use the new created module - first import NativeModules from react-native and destructure your CalendarModule.</p>
+                                <img src="images/blog/import.png" width="100%" />
+                                <p>Lastly call the exposed API to create a calendar event.</p>
+                                <img src="images/blog/call.png" width="100%" />
+
+                                <p>So the method we wrote in Java (createCalendarEvent) is the one we're calling. The rest is just part of the setup.</p>
+                                <p>Here we would also receive a callback for knowing that the event is now stored, so the flow can continue.</p>
+                            </ul>
+
+
+                                <h4>Thank you!</h4>
+                            
+
+                            
+                        </article>
+
+                        <!-- Post end-->
+
+                        <!-- Pagination-->
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <div class="page-title">
+                                    <h3><span>Let's Talk</span></h3>
+                                </div>                      
+                            </div>
+                        </div>
+
+                         <form class="custom-form">
+                            <div class="row mt-5">
+                                <div class="col-lg-6">
+                                    <div class="form-group">
+                                        <label class="f-14 font-weight-bold">Name :</label>
+                                        <input name="name" id="name" type="text" class="form-control" placeholder="Your name..." required="">
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <div class="form-group">
+                                        <label class="f-14 font-weight-bold">E-mail :</label>
+                                        <input name="email" id="email" type="email" class="form-control" placeholder="Your email..." required="">
+                                    </div>
+                                </div>
+                                <div class="col-lg-12">
+                                    <div class="form-group">
+                                        <label class="f-14 font-weight-bold">Website :</label>
+                                        <input name="email" id="email" type="email" class="form-control" placeholder="Your Subject..." required="">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <div class="form-group">
+                                        <label class="f-14 font-weight-bold">Message :</label>
+                                        <textarea name="comments" id="comments" rows="4" class="form-control" placeholder="Your message..." required=""></textarea>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row mt-4">
+                                <div class="col-lg-12">
+                                    <div class="text-center">
+                                        <input type="submit" id="submit" name="send" class="submitBnt btn btn-custom btn-round" value="Send Message" required="">
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                        <!-- /form -->
+
+                        <!-- Pagination end-->
+                    </div>
+                    <!-- Content end-->
+
+                    <!-- Sidebar-->
+                    <div class="col-lg-4">
+                        <div class="sidebar">
+                            <!-- Search widget-->
+                            <aside class="widget widget_search">
+                                <form>
+                                    <input class="form-control" type="search" placeholder="Search...">
+                                    <button class="search-button" type="submit"><span class="mdi mdi-magnify"></span></button>
+                                </form>
+                            </aside>
+
+                            <!-- Categories widget-->
+                            <aside class="widget widget_categories">
+                                <div class="widget-title">Categories</div>
+                                <ul>
+                                    <li><a href="#">Journey</a> (40)</li>
+                                    <li><a href="#">Photography</a> (08)</li>
+                                    <li><a href="#">Lifestyle</a> (11)</li>
+                                    <li><a href="#">Food & Drinks</a> (21)</li>
+                                </ul>
+                            </aside>
+
+                            <!-- Recent entries widget-->
+                            <aside class="widget widget_recent_entries_custom">
+                                <div class="widget-title">Popular Posts</div>
+                                <ul>
+                                    <li class="clearfix">
+                                        <div class="wi">
+                                            <a href="#"><img src="images/portfolio/portfolio-2.jpg" alt="" class="img-fluid"></a>
+                                        </div>
+                                        <div class="wb"><a href="#">Beautiful Day With Friends..</a> <span class="post-date">Jun 15, 2017</span></div>
+                                    </li>
+                                    <li class="clearfix">
+                                        <div class="wi">
+                                            <a href="#"><img src="images/portfolio/portfolio-3.jpg" alt="" class="img-fluid"></a>
+                                        </div>
+                                        <div class="wb"><a href="#">Nature valley with cooling..</a> <span class="post-date">Jun 10, 2017</span></div>
+                                    </li>
+                                    <li class="clearfix">
+                                        <div class="wi">
+                                            <a href="#"><img src="images/portfolio/portfolio-4.jpg" alt="" class="img-fluid"></a>
+                                        </div>
+                                        <div class="wb"><a href="#">15 Best Healthy and Easy Salad..</a> <span class="post-date">Jun 8, 2017</span></div>
+                                    </li>
+                                </ul>
+                            </aside>
+
+                            <!-- Text widget-->
+                            <aside class="widget">
+                                <div class="widget-title">Text Widget</div>
+
+                                <p class="text-muted text-widget-des">Exercitation photo booth stumptown tote bag Banksy, elit small batch freegan sed. Craft beer elit seitan exercitation, photo booth et 8-bit kale chips proident chillwave deep v laborum. Aliquip veniam delectus, Marfa eiusmod Pinterest in do umami readymade swag. </p>
+                            </aside>
+
+                            <!-- Archives widget-->
+                            <aside class="widget">
+                                <div class="widget-title">Archives</div>
+                                <ul>
+                                    <li><a href="#">March 2017</a> (40)</li>
+                                    <li><a href="#">April 2017</a> (08)</li>
+                                    <li><a href="#">May 2017</a> (11)</li>
+                                    <li><a href="#">Jun 2017</a> (21)</li>
+                                </ul>
+                            </aside>
+
+                            <!-- Tags widget-->
+                            <aside class="widget widget_tag_cloud">
+                                <div class="widget-title">Tags</div>
+                                <div class="tagcloud">
+                                    <a href="#">logo</a>
+                                    <a href="#">business</a>
+                                    <a href="#">corporate</a>
+                                    <a href="#">e-commerce</a>
+                                    <a href="#">agency</a>
+                                    <a href="#">responsive</a>
+                                </div>
+                            </aside>
+                        </div>
+                    </div>
+                    <!-- Sidebar end-->
+                </div>
+            </div>
+            <!-- end container -->
+        </section>
+        <!-- bog end -->
+
+        <!-- footer -->
+        <section class="section text-center">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="footer">
+                            <h3 class="footer-logo m-0"><a href="index.html">Evaxo</a></h3>
+                        </div>
+                        <div class="mb-4 pt-4">
+                            <ul class="list-unstyled social-icon">
+                                <li class="list-inline-item"><a href="https://www.linkedin.com/in/rei-tryreact/" target="_blank"><i class="mdi mdi-linkedin"></i></a></li>
+                                <li class="list-inline-item"><a href="https://www.upwork.com/freelancers/~0196fde06791a677d2" target="_blank"><i class="mdi mdi-twitter"></i></a></li>
+                                <li class="list-inline-item"><a href="https://www.instagram.com/rei.koleci/" target="_blank"><i class="mdi mdi-instagram"></i></a></li>
+                                <li class="list-inline-item"><a href="https://github.com/rkoleci" target="_blank"><i class="mdi mdi-dribbble"></i></a></li> 
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <footer class="footer-alt">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="float-right pull-none mt-4">
+                            <p><a href="#" class="text-muted">Terms & Condition</a></p>
+                        </div>
+
+                        <div class="float-left pull-none mt-4">
+                            <p class="copy-rights text-muted">2018 © Evaxo. All Rights Reserved. Powered by Zoyothemes</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </footer>
+        <!-- footer end -->
+
+        <!-- js placed at the end of the document so the pages load faster -->
+        <script src="js/jquery.min.js"></script>
+        <script src="js/popper.min.js"></script>
+        <script src="js/bootstrap.min.js"></script>
+        <!-- isotope filter plugin -->
+        <script type="text/javascript" src="js/isotope.pkgd.min.js"></script>
+        <!--custom script-->
+        <script src="js/jquery.app.js"></script>
+
+    </body>
+
+</html>
