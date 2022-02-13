@@ -5,7 +5,7 @@ const useInfiniteScroll = () => {
 
     useEffect(() => {
         window.addEventListener(
-            "scroll",
+            'scroll',
             () => {
                 const {
                     scrollTop,
@@ -15,14 +15,16 @@ const useInfiniteScroll = () => {
 
                 /* Magic code from THE internet */
                 if (scrollTop + clientHeight >= scrollHeight - 5) {
-                    setPage(page => page + 1); 
+                    setPage(page => page+1); 
                 }
             },
             {
                 passive: true
             }
         );
-    }, [page]);
+
+        return () => window.removeEventListener('scroll')
+    }, []);
 
     return {
         page
